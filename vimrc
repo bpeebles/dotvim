@@ -22,7 +22,6 @@ set history=1000
 set wildignore+=*.sw*,*.pyc,*.class,*.o
 set wildmenu
 set wildmode=list:longest
-set visualbell
 set noerrorbells
 set ruler
 set laststatus=2
