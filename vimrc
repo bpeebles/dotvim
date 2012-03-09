@@ -26,7 +26,6 @@ set noerrorbells
 set ruler
 set laststatus=2
 set number
-set foldmethod=indent
 
 
 let mapleader = ","
@@ -58,6 +57,7 @@ autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
+autocmd FileType python set foldmethod=indent
 
 " Python config from http://hg.python.org/cpython/file/tip/Misc/Vim/vimrc
 runtime pythonrc.vim
