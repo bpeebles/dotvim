@@ -52,12 +52,14 @@ set pastetoggle=<F2>
 au BufNewFile,BufRead *.module,*.inc setfiletype php
 au BufNewFile,BufRead *.pkb,*.pks,*.view setfiletype plsql
 au BufNewFile,BufRead *.zcml setfiletype xml
+au BufNewFile,BufRead *.rst.txt setfiletype rst
 
 autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType python set foldmethod=indent
+autocmd FileType rst set sw=4 ts=4 softtabstop=4
 
 " Python config from http://hg.python.org/cpython/file/tip/Misc/Vim/vimrc
 runtime pythonrc.vim
@@ -75,8 +77,9 @@ Bundle 'gmarik/vundle'
 " Bundles here:
 "
 " original repos on github
-"Bundle 'tpope/vim-fugitive'
 Bundle 'kevinw/pyflakes-vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
@@ -96,3 +99,20 @@ Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on
 set ai
+
+" Strip the newline from the end of a string
+function! Chomp(str)
+  return substitute(a:str, '\n$', '', '')
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpen(cmd)
+  let fname = Chomp(system("git ls-files | dmenu -i -l 20 -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
+
+map <c-f> :call DmenuOpen("e")<cr>
+map <c-s> :call DmenuOpen("split")<cr>
