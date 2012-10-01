@@ -52,7 +52,6 @@ set pastetoggle=<F2>
 au BufNewFile,BufRead *.module,*.inc setfiletype php
 au BufNewFile,BufRead *.pkb,*.pks,*.view setfiletype plsql
 au BufNewFile,BufRead *.zcml setfiletype xml
-au BufNewFile,BufRead *.rst.txt setfiletype rst
 
 autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
