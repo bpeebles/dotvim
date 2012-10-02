@@ -46,6 +46,9 @@ nmap <leader>p `[v`]
 vmap Q gq
 nmap Q gqap
 
+" Enable tagbar toggle shortcut
+nmap <F8> :TagbarToggle<CR>
+
 set pastetoggle=<F2>
 
 " Define custom extentions for filetype
@@ -78,6 +81,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
@@ -98,6 +102,9 @@ Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on
 set ai
+
+" CtrlP Settings
+let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 
 " Strip the newline from the end of a string
 function! Chomp(str)
