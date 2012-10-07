@@ -5,6 +5,10 @@ Getting started
 ---------------
 To get started using this exact repo, clone and make it ``~/.vim``.
 
+You need to manually install Vundle_ itself::
+
+   $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 Then symlink ``~/.vimrc`` to ``~/.vim/vimrc``.
 
 Start ``vim`` and run ``:BundleInstall`` to download the bundles from the
@@ -30,6 +34,7 @@ I'm not sure I'm really happy with the settings ``pythonrc.vim`` give me, but
 some are better than Vim defaults.
 
 
+.. _Vundle: https://github.com/gmarik/vundle
 .. _CtrlP: http://kien.github.com/ctrlp.vim
 .. _PyFlakesVim: https://github.com/kevinw/pyflakes-vim
 .. _Syntastic: https://github.com/scrooloose/syntastic
