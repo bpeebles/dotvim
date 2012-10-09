@@ -61,7 +61,29 @@ autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType python set foldmethod=indent
-autocmd FileType rst set sw=4 ts=4 softtabstop=4
+
+" ReStructuredText {{{
+
+augroup ft_rest
+    au!
+
+    au Filetype rst nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
+    au Filetype rst nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
+    au FileType rst set sw=4 ts=4 softtabstop=4
+augroup END
+
+" }}}
+
 
 " Python config from http://hg.python.org/cpython/file/tip/Misc/Vim/vimrc
 runtime pythonrc.vim
