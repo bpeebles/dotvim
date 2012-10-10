@@ -127,6 +127,7 @@ set ai
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
+let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
 
 " Strip the newline from the end of a string
 function! Chomp(str)
