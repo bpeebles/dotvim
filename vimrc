@@ -60,7 +60,11 @@ autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
-autocmd FileType python set foldmethod=indent
+" Python {{{
+
+autocmd FileType python setlocal foldmethod=indent ts=4 expandtab sw=4 softtabstop=4
+
+" }}}
 
 " ReStructuredText {{{
 
@@ -84,11 +88,6 @@ augroup END
 
 " }}}
 
-
-" Python config from http://hg.python.org/cpython/file/tip/Misc/Vim/vimrc
-runtime pythonrc.vim
-
-
 " Vundle
 
 set rtp+=~/.vim/bundle/vundle/
@@ -101,6 +100,7 @@ Bundle 'gmarik/vundle'
 " Bundles here:
 "
 " original repos on github
+Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
