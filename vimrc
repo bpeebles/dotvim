@@ -42,6 +42,14 @@ nnoremap <leader><space> :noh<cr>
 " select the lines from the previous paste using the [] marks
 nmap <leader>p `[v`]
 
+" Convert a search into folds
+" From http://vim.wikia.com/wiki/Folding_with_Regular_Expression
+nnoremap <localleader>z :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>
+" Delete the folds set by \z
+nnoremap <localleader>Z :setlocal foldcolumn=0 foldexpr=<CR>
+" Make a new command Foldsearch that searches and folds
+command! -nargs=+ Foldsearch exe "normal /".<q-args>."\z"
+
 " Use Q for formatting the current paragraph (or selection)
 vmap Q gq
 nmap Q gqap
