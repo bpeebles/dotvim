@@ -146,3 +146,9 @@ endfunction
 
 map <c-f> :call DmenuOpen("e")<cr>
 map <c-s> :call DmenuOpen("split")<cr>
+
+" Surround settings
+" Enable C-style commenting out with *
+let b:surround_42 = "/* \r */"
+
+vmap <leader>c gS*
