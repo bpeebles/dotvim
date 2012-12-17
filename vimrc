@@ -3,8 +3,8 @@ set nocompatible
 filetype off
 
 "
-"set background=dark
-color desert256bdp
+set background=dark
+"color desert256bdp
 syn on comment minlines=10 maxlines=1000
 filetype plugin indent on
 set encoding=utf-8
@@ -109,6 +109,8 @@ Bundle 'gmarik/vundle'
 " Bundles here:
 "
 " original repos on github
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'flazz/vim-colorschemes'
 Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
@@ -116,6 +118,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'strange/strange.vim'
 
 " vim-scripts repos
 "Bundle 'L9'
@@ -133,6 +136,11 @@ Bundle 'tpope/vim-repeat'
 
 filetype plugin indent on
 set ai
+
+" Color scheme settings
+"let g:solarized_termcolors=256
+"colorscheme solarized
+colorscheme wombat256mod
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
