@@ -77,21 +77,22 @@ autocmd FileType python setlocal foldmethod=indent ts=4 expandtab sw=4 softtabst
 
 " ReStructuredText {{{
 
+au Filetype rst,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
+au Filetype rst,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
+
 augroup ft_rest
     au!
 
-    au Filetype rst nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
-    au Filetype rst nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
     au FileType rst set sw=4 ts=4 softtabstop=4
 augroup END
 
@@ -122,6 +123,9 @@ Bundle 'strange/strange.vim'
 
 " vim-scripts repos
 "Bundle 'L9'
+Bundle 'matchit.zip'
+Bundle 'python_match.vim'
+
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 "
