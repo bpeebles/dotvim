@@ -61,11 +61,11 @@ set pastetoggle=<F2>
 
 " Define custom extentions for filetype
 au BufNewFile,BufRead *.module,*.inc setfiletype php
-au BufNewFile,BufRead *.pkb,*.pks,*.view setfiletype plsql
 au BufNewFile,BufRead *.zcml setfiletype xml
 
 autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
+autocmd FileType plsql set sw=2 ai cindent
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
