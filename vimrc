@@ -31,6 +31,8 @@ set ruler
 set laststatus=2
 set number
 
+" Don't try to save a swap to current dir until last resort
+set directory=~/tmp,/var/tmp,/tmp,.
 
 let mapleader = ","
 
