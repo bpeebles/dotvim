@@ -1,4 +1,8 @@
 set nocompatible
+if has("gui_running")
+  set guioptions=M
+  set guifont=Envy\ Code\ R\ 9
+endif
 " Needed for vundle
 filetype off
 
