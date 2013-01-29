@@ -125,6 +125,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'scrooloose/nerdtree'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
@@ -155,6 +156,9 @@ colorscheme wombat256mod
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
+
+" NERDTree stuff
+nmap <leader>t :NERDTreeToggle<CR>
 
 " Strip the newline from the end of a string
 function! Chomp(str)
