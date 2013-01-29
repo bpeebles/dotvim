@@ -71,7 +71,7 @@ autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
 " Python {{{
 
-autocmd FileType python setlocal foldmethod=indent ts=4 expandtab sw=4 softtabstop=4
+autocmd FileType python setlocal foldmethod=indent ts=8 expandtab sw=4 softtabstop=4
 
 " }}}
 
