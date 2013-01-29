@@ -172,3 +172,6 @@ map <c-s> :call DmenuOpen("split")<cr>
 let b:surround_42 = "/* \r */"
 
 vmap <leader>c gS*
+
+" Write a file using sudo in case you opened it as not root
+command Sudo :%!sudo tee > /dev/null %
