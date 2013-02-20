@@ -162,6 +162,7 @@ let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
 
 " NERDTree stuff
 nmap <leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$','\~#']
 
 " Strip the newline from the end of a string
 function! Chomp(str)
