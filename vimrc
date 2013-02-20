@@ -145,6 +145,9 @@ Bundle 'python_match.vim'
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
+" Powerline
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+
 filetype plugin indent on
 set ai
 
