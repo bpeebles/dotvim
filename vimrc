@@ -131,13 +131,14 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'kevinw/pyflakes-vim'
+"Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'scrooloose/syntastic'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
@@ -212,3 +213,8 @@ vmap <leader>c gS*
 
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
+
+" syntastic options
+let g:syntastic_check_on_open=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_enable_highlighting=0
