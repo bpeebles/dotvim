@@ -34,6 +34,18 @@ set number
 " Don't try to save a swap to current dir until last resort
 set directory=~/tmp,/var/tmp,/tmp,.
 
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
+endif
+
 let mapleader = ","
 
 set list
@@ -122,10 +134,10 @@ Bundle 'hynek/vim-python-pep8-indent'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'scrooloose/nerdtree'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
@@ -155,14 +167,25 @@ set ai
 "let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme wombat256mod
+highlight clear SignColumn
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
+"let g:ctrlp_user_command = {
+"  \ 'types': {
+"    \ 1: ['.git', 'cd %s && git ls-files --exclude-standard'],
+"    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+"    \ },
+"  \ 'fallback': 'find %s -type f'
+"  \ }
 
 " NERDTree stuff
-nmap <leader>t :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc$','\~#']
+"nmap <leader>t :NERDTreeToggle<CR>
+"let NERDTreeIgnore=['\.pyc$','\~#']
+
+" netrw config
+let g:netrw_liststyle=3
 
 " Strip the newline from the end of a string
 function! Chomp(str)
