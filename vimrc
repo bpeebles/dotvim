@@ -49,6 +49,7 @@ endif
 let mapleader = ","
 
 set list
+" how i want to display tabs and trailing whitespace
 set listchars=tab:>-,trail:·
 ",eol:$
 " toggle displaying the trailing characters
@@ -88,13 +89,16 @@ autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
 " Python {{{
-
+" I normally keep tabstop and softtabstop identical, but since Python
+" sees actual tab characters as 8 always, show them as that.
 autocmd FileType python setlocal foldmethod=indent ts=8 expandtab sw=4 softtabstop=4
 
 " }}}
 
 " ReStructuredText {{{
 
+" Do ReStructuredText-style sections over and underlining. Non-shifted is
+" just underlining, shifted is over and under.
 au Filetype rst,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
 au Filetype rst,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
 au Filetype rst,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
