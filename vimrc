@@ -136,13 +136,14 @@ Bundle 'gmarik/vundle'
 " Bundles here:
 "
 " original repos on github
+Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'tomtom/quickfixsigns_vim'
+"Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
