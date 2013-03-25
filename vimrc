@@ -31,6 +31,10 @@ set ruler
 set laststatus=2
 set number
 
+" Printer options
+set pdev=pdf
+set printoptions=paper:letter,syntax:y,wrap:y
+
 " Don't try to save a swap to current dir until last resort
 set directory=~/tmp,/var/tmp,/tmp,.
 
