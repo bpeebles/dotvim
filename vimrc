@@ -3,6 +3,11 @@ if has("gui_running")
   set guioptions=M
   set guifont=Envy\ Code\ R\ 9
 endif
+
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+
 " Needed for vundle
 filetype off
 
