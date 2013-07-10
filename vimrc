@@ -8,6 +8,10 @@ if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
+if $COLORTERM == 'screen'
+  set t_Co=256
+endif
+
 " Needed for vundle
 filetype off
 
@@ -148,6 +152,7 @@ Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'mhinz/vim-startify'
 "Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
@@ -159,6 +164,7 @@ Bundle 'strange/strange.vim'
 "Bundle 'L9'
 Bundle 'matchit.zip'
 Bundle 'python_match.vim'
+Bundle 'psql.vim'
 
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -220,3 +226,8 @@ command Sudo :%!sudo tee > /dev/null %
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_enable_highlighting=0
+
+" startify options
+let g:startify_skiplist = [
+                        \ 'COMMIT_EDITMSG'
+                        \ ]
