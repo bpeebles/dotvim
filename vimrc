@@ -39,6 +39,8 @@ set noerrorbells
 set ruler
 set laststatus=2
 set number
+" Keyboard timeout quicker to show mode line changes
+set ttimeoutlen=100
 
 " Printer options
 set pdev=pdf
@@ -147,6 +149,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-airline'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'kevinw/pyflakes-vim'
@@ -177,9 +180,6 @@ Bundle 'psql.vim'
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
-
-" Powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 filetype plugin indent on
 set ai
