@@ -161,6 +161,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
@@ -231,3 +232,6 @@ let g:syntastic_enable_highlighting=0
 let g:startify_skiplist = [
                         \ 'COMMIT_EDITMSG'
                         \ ]
+
+" Gundo.vim options
+nnoremap <F5> :GundoToggle<CR>
