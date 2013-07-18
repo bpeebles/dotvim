@@ -16,6 +16,14 @@ Then symlink ``~/.vimrc`` to ``~/.vim/vimrc`` (after moving any existing
 Start ``vim`` and run ``:BundleInstall`` to download the bundles from the
 remote sources. Restart vim to be safe and enjoy the awesomeness.
 
+License
+-------
+
+This file, vimrc, and the contents of the ``ftdect`` directory are my original
+work and are released under the unlicense_. See the file UNLICENSE for the full
+license. Other files in this repository are the copyright of their original
+creators.
+
 Notable plugins added
 ---------------------
 
@@ -29,8 +37,8 @@ Notable plugins added
 - fugitive.vim_ is a pretty amazing Git wrapper that seems to speed up my git
   workflow.
 
-- powerline_ I install outside of Vundle using pip since I also want it for
-  my bash prompt.
+- vim-airline_ I've switched from using the new powerline_ to vim-airline since
+  it's pure Vimscript and I've stopped using powerline for my bash prompt.
 
 .. _Vundle: https://github.com/gmarik/vundle
 .. _CtrlP: http://kien.github.com/ctrlp.vim
@@ -38,3 +46,5 @@ Notable plugins added
 .. _Syntastic: https://github.com/scrooloose/syntastic
 .. _fugitive.vim: https://github.com/tpope/vim-fugitive
 .. _powerline: https://github.com/Lokaltog/powerline
+.. _vim-airline: https://github.com/bling/vim-airline
+.. _unlicense: http://unlicense.org
