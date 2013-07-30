@@ -227,6 +227,7 @@ command Sudo :%!sudo tee > /dev/null %
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_enable_highlighting=0
+let g:syntastic_python_checkers=['pyflakes']
 
 " startify options
 let g:startify_skiplist = [
