@@ -147,7 +147,6 @@ Bundle 'gmarik/vundle'
 " Bundles here:
 "
 " original repos on github
-Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Bundle 'flazz/vim-colorschemes'
@@ -155,6 +154,7 @@ Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'mhinz/vim-signify'
 Bundle 'mhinz/vim-startify'
 "Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
@@ -236,3 +236,15 @@ let g:startify_skiplist = [
 
 " Gundo.vim options
 nnoremap <F5> :GundoToggle<CR>
+
+" highlight lines in Sy and vimdiff etc.)
+
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+
+" highlight signs in Sy
+
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
