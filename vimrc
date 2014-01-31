@@ -154,14 +154,15 @@ Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'mbbill/undotree'
 Bundle 'mhinz/vim-signify'
-Bundle 'mhinz/vim-startify'
+"Bundle 'mhinz/vim-startify'
 "Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/syntastic'
-Bundle 'sjl/gundo.vim'
+"Bundle 'sjl/gundo.vim'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
@@ -235,7 +236,10 @@ let g:startify_skiplist = [
                         \ ]
 
 " Gundo.vim options
-nnoremap <F5> :GundoToggle<CR>
+"nnoremap <F5> :GundoToggle<CR>
+
+" undotree options
+nnoremap <F5> :UndotreeToggle<CR>
 
 " highlight lines in Sy and vimdiff etc.)
 
