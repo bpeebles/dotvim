@@ -149,24 +149,20 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
+Bundle 'elzr/vim-json'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'hynek/vim-python-pep8-indent'
-"Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mbbill/undotree'
 Bundle 'mhinz/vim-signify'
-"Bundle 'mhinz/vim-startify'
-"Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/syntastic'
-"Bundle 'sjl/gundo.vim'
 Bundle 'strange/strange.vim'
 
 " vim-scripts repos
-"Bundle 'L9'
 Bundle 'matchit.zip'
 Bundle 'python_match.vim'
 Bundle 'psql.vim'
@@ -187,28 +183,52 @@ filetype plugin indent on
 set ai
 
 " Color scheme settings
-"let g:solarized_termcolors=256
-"colorscheme solarized
 colorscheme wombat256mod
 highlight clear SignColumn
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
-"let g:ctrlp_user_command = {
-"  \ 'types': {
-"    \ 1: ['.git', 'cd %s && git ls-files --exclude-standard'],
-"    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-"    \ },
-"  \ 'fallback': 'find %s -type f'
-"  \ }
-
-" NERDTree stuff
-"nmap <leader>t :NERDTreeToggle<CR>
-"let NERDTreeIgnore=['\.pyc$','\~#']
 
 " netrw config
+" from http://modal.us/blog/2013/07/27/back-to-vim-with-nerdtree-nope-netrw/
+" and
+" http://ellengummesson.com/blog/2014/02/22/make-vim-really-behave-like-netrw/
+" {{{netrw
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+nnoremap <leader>e :call ToggleVExplorer()<CR>
+
+" Hit enter in the file browser to open the selected
+" file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_banner = 0
+let g:netrw_list_hide = '.*\.sw[po],.*\.pyc'
+
+" Narrower
+let g:netrw_winsize = -40
+
+" Default to tree mode
 let g:netrw_liststyle=3
+" netrw}}}
 
 " Strip the newline from the end of a string
 function! Chomp(str)
@@ -228,15 +248,7 @@ command Sudo :%!sudo tee > /dev/null %
 let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_enable_highlighting=0
-let g:syntastic_python_checkers=['pyflakes']
-
-" startify options
-let g:startify_skiplist = [
-                        \ 'COMMIT_EDITMSG'
-                        \ ]
-
-" Gundo.vim options
-"nnoremap <F5> :GundoToggle<CR>
+let g:syntastic_python_checkers=['python', 'flake8']
 
 " undotree options
 nnoremap <F5> :UndotreeToggle<CR>
