@@ -13,7 +13,7 @@ You need to manually install Vundle_ itself::
 Then symlink ``~/.vimrc`` to ``~/.vim/vimrc`` (after moving any existing
 ``~/.vimrc`` you have to ``~/.vim/``.)
 
-Start ``vim`` and run ``:BundleInstall`` to download the bundles from the
+Start ``vim`` and run ``:PluginInstall`` to download the bundles from the
 remote sources. Restart vim to be safe and enjoy the awesomeness.
 
 License
