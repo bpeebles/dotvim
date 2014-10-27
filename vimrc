@@ -181,6 +181,9 @@ Plugin 'psql.vim'
 filetype plugin indent on
 set ai
 
+autocmd BufNewFile,BufRead *.json set filetype=json
+autocmd BufNewFile,BufRead *.jsonp set filetype=json
+
 " Color scheme settings
 colorscheme wombat256mod
 highlight clear SignColumn
