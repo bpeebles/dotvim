@@ -106,7 +106,7 @@ autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
 " Python {{{
 " I normally keep tabstop and softtabstop identical, but since Python
 " sees actual tab characters as 8 always, show them as that.
-autocmd FileType python setlocal foldmethod=indent ts=8 expandtab sw=4 softtabstop=4
+autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
 
 " }}}
 
