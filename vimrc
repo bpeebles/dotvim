@@ -156,11 +156,13 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'
 Plugin 'strange/strange.vim'
+Plugin 'wting/rust.vim'
 
 " vim-scripts repos
 Plugin 'matchit.zip'
