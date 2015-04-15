@@ -1,4 +1,3 @@
-set nocompatible
 if has("gui_running")
   set guioptions=M
   set guifont=Envy\ Code\ R\ 9
@@ -94,20 +93,28 @@ nmap <F8> :TagbarToggle<CR>
 set pastetoggle=<F2>
 
 " Define custom extentions for filetype
-au BufNewFile,BufRead *.module,*.inc setfiletype php
-au BufNewFile,BufRead *.zcml setfiletype xml
+augroup FileTypes
+autocmd!
+autocmd BufNewFile,BufRead *.module,*.inc setfiletype php
+autocmd BufNewFile,BufRead *.zcml setfiletype xml
+augroup END
 
+augroup Indents
+autocmd!
 autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
 autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
 autocmd FileType plsql set sw=2 ai cindent
 autocmd FileType xml set sw=2 ts=2 softtabstop=2
 autocmd FileType html set sw=2 ts=2 softtabstop=2
 autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
+augroup END
 " Python {{{
+augroup Python
+autocmd!
 " I normally keep tabstop and softtabstop identical, but since Python
 " sees actual tab characters as 8 always, show them as that.
 autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
-
+augroup END
 " }}}
 
 " ReStructuredText {{{
@@ -149,6 +156,7 @@ Plugin 'gmarik/vundle'
 " original repos on github
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'bogado/file-line'
 Plugin 'elzr/vim-json'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -160,8 +168,10 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 Plugin 'strange/strange.vim'
+Plugin 'wellsjo/wells-colorscheme.vim'
 Plugin 'wting/rust.vim'
 
 " vim-scripts repos
@@ -183,56 +193,30 @@ Plugin 'psql.vim'
 filetype plugin indent on
 set ai
 
+" JSON {{{
+augroup JSON
+autocmd!
 autocmd BufNewFile,BufRead *.json set filetype=json
 autocmd BufNewFile,BufRead *.jsonp set filetype=json
+autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
+augroup END
+" }}}
 
 " Color scheme settings
-colorscheme wombat256mod
+"colorscheme wombat256mod
+colorscheme wells-colors
 highlight clear SignColumn
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
 " netrw config
+" I had some deleted config from, instead I'm using vim-vinegar now.
 " from http://modal.us/blog/2013/07/27/back-to-vim-with-nerdtree-nope-netrw/
 " and
 " http://ellengummesson.com/blog/2014/02/22/make-vim-really-behave-like-netrw/
-" {{{netrw
-" Toggle Vexplore with Ctrl-E
-function! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          close
-          exec cur_win_nr . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec '1wincmd w'
-      Vexplore
-      let t:expl_buf_num = bufnr("%")
-  endif
-endfunction
-nnoremap <leader>e :call ToggleVExplorer()<CR>
-
-" Hit enter in the file browser to open the selected
-" file with :vsplit to the right of the browser.
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_banner = 0
-let g:netrw_list_hide = '.*\.sw[po],.*\.pyc'
-
-" Narrower
-let g:netrw_winsize = -40
-
-" Default to tree mode
-let g:netrw_liststyle=3
-" netrw}}}
 
 " Strip the newline from the end of a string
 function! Chomp(str)
