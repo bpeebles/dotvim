@@ -121,18 +121,18 @@ augroup END
 
 " Do ReStructuredText-style sections over and underlining. Non-shifted is
 " just underlining, shifted is over and under.
-au Filetype rst,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
-au Filetype rst,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
+au Filetype rst,markdown,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
 
 augroup ft_rest
     au!
@@ -156,6 +156,7 @@ Plugin 'gmarik/vundle'
 " original repos on github
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'bilalq/lite-dfm'
 Plugin 'bogado/file-line'
 Plugin 'elzr/vim-json'
 Plugin 'flazz/vim-colorschemes'
@@ -199,6 +200,14 @@ autocmd!
 autocmd BufNewFile,BufRead *.json set filetype=json
 autocmd BufNewFile,BufRead *.jsonp set filetype=json
 autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
+augroup END
+" }}}
+
+" Markdown {{{
+augroup Markdown
+  autocmd!
+  autocmd BufNewFile,BufRead *.md set filetype=markdown
+  au FileType rst set sw=4 ts=4 softtabstop=4
 augroup END
 " }}}
 
@@ -263,3 +272,8 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+" lite-dfm options {{{
+let g:lite_dfm_left_offset = 4
+nnoremap <leader>z :LiteDFMToggle<CR>i<Esc>`^
+" }}}
