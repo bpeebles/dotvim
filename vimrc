@@ -157,7 +157,8 @@ Plugin 'gmarik/vundle'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'bilalq/lite-dfm'
-Plugin 'bogado/file-line'
+"Plugin 'bogado/file-line'
+"Plugin 'chrisbra/csv.vim'
 Plugin 'elzr/vim-json'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -172,7 +173,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 Plugin 'strange/strange.vim'
-Plugin 'wellsjo/wells-colorscheme.vim'
+"Plugin 'wellsjo/wells-colorscheme.vim'
+Plugin 'bpeebles/wells-colorscheme.vim'
 Plugin 'wting/rust.vim'
 
 " vim-scripts repos
@@ -277,3 +279,13 @@ let g:airline_right_alt_sep = ''
 let g:lite_dfm_left_offset = 4
 nnoremap <leader>z :LiteDFMToggle<CR>i<Esc>`^
 " }}}
+"
+
+if exists("did_load_csvfiletype")
+  finish
+endif
+let did_load_csvfiletype=1
+
+augroup filetypedetect
+  au! BufRead,BufNewFile *.csv,*.dat        setfiletype csv
+augroup END
