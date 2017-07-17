@@ -166,15 +166,16 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-signify'
+Plugin 'pearofducks/ansible-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 Plugin 'strange/strange.vim'
-"Plugin 'wellsjo/wells-colorscheme.vim'
-Plugin 'bpeebles/wells-colorscheme.vim'
+Plugin 'wellsjo/wellsokai.vim'
 Plugin 'wting/rust.vim'
 
 " vim-scripts repos
@@ -215,7 +216,7 @@ augroup END
 
 " Color scheme settings
 "colorscheme wombat256mod
-colorscheme wells-colors
+colorscheme wellsokai
 highlight clear SignColumn
 
 " CtrlP Settings
