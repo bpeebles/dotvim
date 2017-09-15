@@ -142,57 +142,41 @@ augroup END
 
 " }}}
 
-" Vundle
+" vim-plug
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Plugin 'gmarik/vundle'
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Bundles here:
 "
 " original repos on github
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'bilalq/lite-dfm'
-"Plugin 'bogado/file-line'
-"Plugin 'chrisbra/csv.vim'
-Plugin 'elzr/vim-json'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'mbbill/undotree'
-Plugin 'mhinz/vim-signify'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-vinegar'
-Plugin 'scrooloose/syntastic'
-Plugin 'strange/strange.vim'
-Plugin 'wellsjo/wellsokai.vim'
-Plugin 'wting/rust.vim'
+Plug 'bling/vim-airline'
+Plug 'elzr/vim-json', {'for': 'json'}
+"Plug 'flazz/vim-colorschemes'
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'kien/ctrlp.vim'
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'mhinz/vim-signify'
+Plug 'pearofducks/ansible-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-vinegar'
+Plug 'scrooloose/syntastic'
+Plug 'wellsjo/wellsokai.vim'
+Plug 'wting/rust.vim', {'for': 'rust'}
 
 " vim-scripts repos
-Plugin 'matchit.zip'
-Plugin 'python_match.vim'
-Plugin 'psql.vim'
+"Plug 'matchit.zip'
+"Plug 'python_match.vim'
+"Plug 'psql.vim'
 
-" non github repos
-"Plugin 'git://git.wincent.com/command-t.git'
-"
-" Brief help
-" :PluginList          - list configured bundles
-" :PluginInstall(!)    - install(update) bundles
-" :PluginSearch(!) foo - search(or refresh cache first) for foo
-" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
+call plug#end()
 
 filetype plugin indent on
 set ai
