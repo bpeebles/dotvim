@@ -149,14 +149,14 @@ augroup END
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Bundles here:
 "
-" original repos on github
 Plug 'bling/vim-airline'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 "Plug 'flazz/vim-colorschemes'
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'kien/ctrlp.vim'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'mhinz/vim-signify'
@@ -170,6 +170,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/syntastic'
 Plug 'wellsjo/wellsokai.vim'
 Plug 'wting/rust.vim', {'for': 'rust'}
+Plug 'Yggdroot/indentLine'
 
 " vim-scripts repos
 "Plug 'matchit.zip'
@@ -202,6 +203,7 @@ augroup END
 "colorscheme wombat256mod
 colorscheme wellsokai
 highlight clear SignColumn
+hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE guibg=#3a3a3a guifg=NONE
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
@@ -249,6 +251,9 @@ highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
+" Yapf
+nnoremap <leader>y :call yapf#YAPF()<cr>
+
 " vim-airline configuration
 " Turn on the buffer/tab list
 let g:airline#extensions#tabline#enabled = 1
@@ -260,12 +265,6 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-" lite-dfm options {{{
-let g:lite_dfm_left_offset = 4
-nnoremap <leader>z :LiteDFMToggle<CR>i<Esc>`^
-" }}}
-"
-
 if exists("did_load_csvfiletype")
   finish
 endif
@@ -274,3 +273,6 @@ let did_load_csvfiletype=1
 augroup filetypedetect
   au! BufRead,BufNewFile *.csv,*.dat        setfiletype csv
 augroup END
+
+let g:indentLine_char = '¦'
+let g:indentLine_color_term = 237
