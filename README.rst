@@ -1,5 +1,5 @@
-Simple vimrc set up using Vundle
-================================
+Simple vimrc set up using vim-plug
+==================================
 
 Getting started
 ---------------
@@ -21,7 +21,7 @@ sources. Restart vim to be safe and enjoy the awesomeness.
 License
 -------
 
-This file, vimrc, and the contents of the ``ftdect`` directory are my original
+This file, vimrc, and the contents of the ``ftdetect`` directory are my original
 work and are released under the unlicense_. See the file UNLICENSE for the full
 license. Other files in this repository are the copyright of their original
 creators.
