@@ -1,3 +1,36 @@
+" vim-plug
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'bling/vim-airline'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'kien/ctrlp.vim'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'mhinz/vim-signify'
+Plug 'pearofducks/ansible-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-vinegar'
+Plug 'scrooloose/syntastic'
+Plug 'wellsjo/wellsokai.vim'
+Plug 'wting/rust.vim', {'for': 'rust'}
+Plug 'Yggdroot/indentLine'
+
+call plug#end()
+
+filetype plugin indent on
+set ai
+
 if has("gui_running")
   set guioptions=M
   set guifont=Envy\ Code\ R\ 9
@@ -11,14 +44,8 @@ if $COLORTERM == 'screen'
   set t_Co=256
 endif
 
-" Needed for vundle
-filetype off
-
-"
 set background=dark
-"color desert256bdp
 syn on comment minlines=10 maxlines=1000
-filetype plugin indent on
 set encoding=utf-8
 set expandtab
 set smarttab
@@ -30,7 +57,7 @@ set smartcase
 set showmatch
 set title
 set hidden
-set history=1000
+set history=5000
 set wildignore+=*.sw*,*.pyc,*.class,*.o
 set wildmenu
 set wildmode=list:longest
@@ -65,7 +92,6 @@ let mapleader = ","
 set list
 " how i want to display tabs and trailing whitespace
 set listchars=tab:>-,trail:·
-",eol:$
 " toggle displaying the trailing characters
 nmap <silent> <leader>s :set nolist!<CR>
 
@@ -94,115 +120,55 @@ set pastetoggle=<F2>
 
 " Define custom extentions for filetype
 augroup FileTypes
-autocmd!
-autocmd BufNewFile,BufRead *.module,*.inc setfiletype php
-autocmd BufNewFile,BufRead *.zcml setfiletype xml
+  autocmd!
+  autocmd BufNewFile,BufRead *.module,*.inc setfiletype php
+  autocmd BufNewFile,BufRead *.zcml setfiletype xml
 augroup END
 
 augroup Indents
-autocmd!
-autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
-autocmd FileType perl set cindent sw=4 ts=4 softtabstop=4
-autocmd FileType plsql set sw=2 ai cindent
-autocmd FileType xml set sw=2 ts=2 softtabstop=2
-autocmd FileType html set sw=2 ts=2 softtabstop=2
-autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
+  autocmd!
+  autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
+  autocmd FileType xml set sw=2 ts=2 softtabstop=2
+  autocmd FileType html set sw=2 ts=2 softtabstop=2
+  autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
 augroup END
+"
 " Python {{{
 augroup Python
-autocmd!
-" I normally keep tabstop and softtabstop identical, but since Python
-" sees actual tab characters as 8 always, show them as that.
-autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
+  autocmd!
+  " I normally keep tabstop and softtabstop identical, but since Python
+  " sees actual tab characters as 8 always, show them as that.
+  autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
 augroup END
 " }}}
 
 " ReStructuredText {{{
-
-" Do ReStructuredText-style sections over and underlining. Non-shifted is
-" just underlining, shifted is over and under.
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
-au Filetype rst,markdown,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
-
 augroup ft_rest
-    au!
-
-    au FileType rst set sw=4 ts=4 softtabstop=4
+  au!
+  au FileType rst set sw=4 ts=4 softtabstop=4
+  " Do ReStructuredText-style sections over and underlining. Non-shifted is
+  " just underlining, shifted is over and under.
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>! yypVr#yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>1 yypVr#:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>@ yypVr*yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>2 yypVr*:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader># yypVr=yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
+  au Filetype rst,markdown,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
 augroup END
-
 " }}}
-
-" Vundle
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Plugin 'gmarik/vundle'
-
-" Bundles here:
-"
-" original repos on github
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'bilalq/lite-dfm'
-"Plugin 'bogado/file-line'
-"Plugin 'chrisbra/csv.vim'
-Plugin 'elzr/vim-json'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'mbbill/undotree'
-Plugin 'mhinz/vim-signify'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-vinegar'
-Plugin 'scrooloose/syntastic'
-Plugin 'strange/strange.vim'
-Plugin 'wellsjo/wellsokai.vim'
-Plugin 'wting/rust.vim'
-
-" vim-scripts repos
-Plugin 'matchit.zip'
-Plugin 'python_match.vim'
-Plugin 'psql.vim'
-
-" non github repos
-"Plugin 'git://git.wincent.com/command-t.git'
-"
-" Brief help
-" :PluginList          - list configured bundles
-" :PluginInstall(!)    - install(update) bundles
-" :PluginSearch(!) foo - search(or refresh cache first) for foo
-" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-
-filetype plugin indent on
-set ai
 
 " JSON {{{
 augroup JSON
-autocmd!
-autocmd BufNewFile,BufRead *.json set filetype=json
-autocmd BufNewFile,BufRead *.jsonp set filetype=json
-autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
+  autocmd!
+  autocmd BufNewFile,BufRead *.json set filetype=json
+  autocmd BufNewFile,BufRead *.jsonp set filetype=json
+  autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
 augroup END
 " }}}
 
@@ -215,31 +181,14 @@ augroup END
 " }}}
 
 " Color scheme settings
-"colorscheme wombat256mod
 colorscheme wellsokai
 highlight clear SignColumn
+hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE guibg=#3a3a3a guifg=NONE
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
 let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
-
-" netrw config
-" I had some deleted config from, instead I'm using vim-vinegar now.
-" from http://modal.us/blog/2013/07/27/back-to-vim-with-nerdtree-nope-netrw/
-" and
-" http://ellengummesson.com/blog/2014/02/22/make-vim-really-behave-like-netrw/
-
-" Strip the newline from the end of a string
-function! Chomp(str)
-  return substitute(a:str, '\n$', '', '')
-endfunction
-
-" Surround settings
-" Enable C-style commenting out with *
-let b:surround_42 = "/* \r */"
-
-vmap <leader>c gS*
 
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
@@ -254,16 +203,20 @@ let g:syntastic_python_checkers=['python', 'flake8']
 nnoremap <F5> :UndotreeToggle<CR>
 
 " highlight lines in Sy and vimdiff etc.)
-
 highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
 highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
 highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
 
 " highlight signs in Sy
-
 highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
+" Yapf
+nnoremap <leader>y :call yapf#YAPF()<cr>
+
+" EditorConfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " vim-airline configuration
 " Turn on the buffer/tab list
@@ -276,17 +229,24 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-" lite-dfm options {{{
-let g:lite_dfm_left_offset = 4
-nnoremap <leader>z :LiteDFMToggle<CR>i<Esc>`^
-" }}}
-"
+let g:indentLine_char = '¦'
+let g:indentLine_color_term = 237
 
-if exists("did_load_csvfiletype")
-  finish
+" Add mappings to always move between windows
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+if has('nvim')
+  " Neovim terminal configuration
+  tnoremap <Esc><Esc> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+  inoremap <A-h> <C-\><C-N><C-w>h
+  inoremap <A-j> <C-\><C-N><C-w>j
+  inoremap <A-k> <C-\><C-N><C-w>k
+  inoremap <A-l> <C-\><C-N><C-w>l
 endif
-let did_load_csvfiletype=1
-
-augroup filetypedetect
-  au! BufRead,BufNewFile *.csv,*.dat        setfiletype csv
-augroup END

@@ -5,18 +5,18 @@ Getting started
 ---------------
 To get started using this exact repo, clone and make it ``~/.vim``.
 
-You need to manually install Vundle_ itself::
+You need to manually install vim-plug_ itself::
 
-   mkdir -p ~/.vim/bundle
-   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 Then symlink ``~/.vimrc`` to ``~/.vim/vimrc`` (after moving/integrating any
 existing ``~/.vimrc`` you have to ``~/.vim/``.)::
 
    ln -s ~/.vim/vimrc ~/.vimrc
 
-Start ``vim`` and run ``:PluginInstall`` to download the bundles from the
-remote sources. Restart vim to be safe and enjoy the awesomeness.
+Start ``vim`` and run ``:PlugInstall`` to download the bundles from the remote
+sources. Restart vim to be safe and enjoy the awesomeness.
 
 License
 -------
@@ -41,7 +41,7 @@ Notable plugins added
 - vim-airline_ I've switched from using the new powerline_ to vim-airline since
   it's pure Vimscript and I've stopped using powerline for my bash prompt.
 
-.. _Vundle: https://github.com/gmarik/vundle
+.. _vim-plug: https://github.com/junegunn/vim-plug
 .. _CtrlP: http://kien.github.com/ctrlp.vim
 .. _Syntastic: https://github.com/scrooloose/syntastic
 .. _fugitive.vim: https://github.com/tpope/vim-fugitive
