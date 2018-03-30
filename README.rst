@@ -42,7 +42,7 @@ Notable plugins added
   it's pure Vimscript and I've stopped using powerline for my bash prompt.
 
 .. _vim-plug: https://github.com/junegunn/vim-plug
-.. _CtrlP: http://kien.github.com/ctrlp.vim
+.. _CtrlP: http://ctrlpvim.github.io/ctrlp.vim/
 .. _Syntastic: https://github.com/scrooloose/syntastic
 .. _fugitive.vim: https://github.com/tpope/vim-fugitive
 .. _powerline: https://github.com/Lokaltog/powerline
