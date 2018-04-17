@@ -17,6 +17,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -27,9 +28,6 @@ Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'Yggdroot/indentLine'
 
 call plug#end()
-
-filetype plugin indent on
-set ai
 
 if has("gui_running")
   set guioptions=M
@@ -45,12 +43,9 @@ if $COLORTERM == 'screen'
 endif
 
 set background=dark
-syn on comment minlines=10 maxlines=1000
 set encoding=utf-8
 set expandtab
-set smarttab
 set shiftround
-set incsearch
 set hlsearch
 set ignorecase
 set smartcase
@@ -59,11 +54,8 @@ set title
 set hidden
 set history=5000
 set wildignore+=*.sw*,*.pyc,*.class,*.o
-set wildmenu
 set wildmode=list:longest
 set noerrorbells
-set ruler
-set laststatus=2
 set number
 " Keyboard timeout quicker to show mode line changes
 set ttimeoutlen=100
@@ -90,8 +82,7 @@ endif
 let mapleader = ","
 
 set list
-" how i want to display tabs and trailing whitespace
-set listchars=tab:>-,trail:·
+
 " toggle displaying the trailing characters
 nmap <silent> <leader>s :set nolist!<CR>
 
