@@ -5,6 +5,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'bling/vim-airline'
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
@@ -23,7 +24,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/syntastic'
-Plug 'wellsjo/wellsokai.vim'
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'Yggdroot/indentLine'
 
@@ -172,9 +172,7 @@ augroup END
 " }}}
 
 " Color scheme settings
-colorscheme wellsokai
-highlight clear SignColumn
-hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE guibg=#3a3a3a guifg=NONE
+colorscheme dracula
 
 " CtrlP Settings
 let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
