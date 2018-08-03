@@ -22,6 +22,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/syntastic'
 Plug 'wting/rust.vim', {'for': 'rust'}
