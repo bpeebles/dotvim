@@ -1,6 +1,8 @@
 Simple vimrc set up using vim-plug
 ==================================
 
+I currently use neovim_ but most of ``vimrc`` will work with Vim 8+.
+
 Getting started
 ---------------
 To get started using this exact repo, clone and make it ``~/.vim``.
@@ -26,14 +28,12 @@ work and are released under the unlicense_. See the file UNLICENSE for the full
 license. Other files in this repository are the copyright of their original
 creators.
 
-Notable plugins added
----------------------
+Notable plugins used
+--------------------
 
-- CtrlP_ is kind of like Command-T, but better! I have set to ``:CtrlPMixed``
-  by default, but you can change the ``g:ctrlp_cmd`` to ``:CtrlP`` for the
-  default operation.
+- vim-picker_ is a nice fuzzy picker that uses fzy_ and I've defined some keys to activate it.
 
-- Syntastic_, to check Python and other file types.
+- ale_, to check Python and other file types.
 
 - fugitive.vim_ is a pretty amazing Git wrapper that seems to speed up my git
   workflow.
@@ -41,9 +41,11 @@ Notable plugins added
 - vim-airline_ I've switched from using the new powerline_ to vim-airline since
   it's pure Vimscript and I've stopped using powerline for my bash prompt.
 
+.. _neovim: https://github.com/neovim/neovim
 .. _vim-plug: https://github.com/junegunn/vim-plug
-.. _CtrlP: http://ctrlpvim.github.io/ctrlp.vim/
-.. _Syntastic: https://github.com/scrooloose/syntastic
+.. _vim-picker: https://github.com/srstevenson/vim-picker
+.. _fzy: https://github.com/jhawthorn/fzy
+.. _ale: https://github.com/w0rp/ale
 .. _fugitive.vim: https://github.com/tpope/vim-fugitive
 .. _powerline: https://github.com/Lokaltog/powerline
 .. _vim-airline: https://github.com/bling/vim-airline
