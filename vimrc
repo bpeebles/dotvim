@@ -5,26 +5,28 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'bling/vim-airline'
+Plug 'bpeebles/vim-commitvention'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Plug 'mhinz/vim-signify'
 Plug 'pearofducks/ansible-vim'
+Plug 'rhysd/committia.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'srstevenson/vim-picker'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'Yggdroot/indentLine'
 
