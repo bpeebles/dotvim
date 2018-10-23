@@ -1,3 +1,20 @@
+if has('nvim')
+  " Specific Pythons for Neovim to speed up start up
+  let g:python_host_prog = $HOME . '/.pyenv/versions/2.7.15-neovim/bin/python'
+  let g:python3_host_prog = $HOME . '/.pyenv/versions/3.7.0-neovim/bin/python'
+
+  " Neovim terminal configuration
+  tnoremap <Esc><Esc> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+  inoremap <A-h> <C-\><C-N><C-w>h
+  inoremap <A-j> <C-\><C-N><C-w>j
+  inoremap <A-k> <C-\><C-N><C-w>k
+  inoremap <A-l> <C-\><C-N><C-w>l
+endif
+
 " vim-plug
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
@@ -32,6 +49,9 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
+" Color scheme settings
+colorscheme dracula
+
 if has("gui_running")
   set guioptions=M
   set guifont=Envy\ Code\ R\ 9
@@ -64,7 +84,7 @@ set number
 set ttimeoutlen=100
 
 " Printer options
-set pdev=pdf
+set printdevice=pdf
 set printoptions=paper:letter,syntax:y,wrap:y
 
 " Don't try to save a swap to current dir until last resort
@@ -112,31 +132,13 @@ nmap <F8> :TagbarToggle<CR>
 
 set pastetoggle=<F2>
 
-" Define custom extentions for filetype
-augroup FileTypes
-  autocmd!
-  autocmd BufNewFile,BufRead *.module,*.inc setfiletype php
-  autocmd BufNewFile,BufRead *.zcml setfiletype xml
-augroup END
-
-augroup Indents
-  autocmd!
-  autocmd FileType php set cindent sw=2 ts=2 softtabstop=2
-  autocmd FileType xml set sw=2 ts=2 softtabstop=2
-  autocmd FileType html set sw=2 ts=2 softtabstop=2
-  autocmd FileType javascript set sw=2 ts=2 softtabstop=2 cindent
-augroup END
-"
-" Python {{{
 augroup Python
   autocmd!
   " I normally keep tabstop and softtabstop identical, but since Python
   " sees actual tab characters as 8 always, show them as that.
   autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
 augroup END
-" }}}
 
-" ReStructuredText {{{
 augroup ft_rest
   au!
   au FileType rst set sw=4 ts=4 softtabstop=4
@@ -150,59 +152,18 @@ augroup ft_rest
   au Filetype rst,markdown,python nnoremap <buffer> <localleader>3 yypVr=:redraw<cr>
   au Filetype rst,markdown,python nnoremap <buffer> <localleader>$ yypVr-yykPjj:redraw<cr>
   au Filetype rst,markdown,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
-  au Filetype rst,markdown,python nnoremap <buffer> <localleader>% yypVr^yykPjj:redraw<cr>
-  au Filetype rst,markdown,python nnoremap <buffer> <localleader>5 yypVr^:redraw<cr>
-  au Filetype rst,markdown,python nnoremap <buffer> <localleader>^ yypVr"yykPjj:redraw<cr>
-  au Filetype rst,markdown,python nnoremap <buffer> <localleader>6 yypVr":redraw<cr>
 augroup END
-" }}}
 
-" JSON {{{
 augroup JSON
   autocmd!
-  autocmd BufNewFile,BufRead *.json set filetype=json
-  autocmd BufNewFile,BufRead *.jsonp set filetype=json
   autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
 augroup END
-" }}}
-
-" Markdown {{{
-augroup Markdown
-  autocmd!
-  autocmd BufNewFile,BufRead *.md set filetype=markdown
-  au FileType rst set sw=4 ts=4 softtabstop=4
-augroup END
-" }}}
-
-" Color scheme settings
-colorscheme dracula
-
-" CtrlP Settings
-let g:ctrlp_cmd='CtrlPMixed'  " Search everything by default
-let g:ctrlp_root_markers = ['.ctrlp'] " Enable .ctrlp to mark top for ctrlp
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
 
-" syntastic options
-let g:syntastic_check_on_open=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_enable_highlighting=0
-let g:syntastic_python_checkers=['python', 'flake8']
-
 " undotree options
 nnoremap <F5> :UndotreeToggle<CR>
-
-" highlight lines in Sy and vimdiff etc.)
-highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
-highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
-highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
-
-" highlight signs in Sy
-highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
-highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
-highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 " Yapf
 nnoremap <leader>y :call yapf#YAPF()<cr>
@@ -221,24 +182,18 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-let g:indentLine_char = '¦'
-let g:indentLine_color_term = 237
+" indentLine settings
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 238
 
-" Add mappings to always move between windows
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-if has('nvim')
-  " Neovim terminal configuration
-  tnoremap <Esc><Esc> <C-\><C-n>
-  tnoremap <A-h> <C-\><C-N><C-w>h
-  tnoremap <A-j> <C-\><C-N><C-w>j
-  tnoremap <A-k> <C-\><C-N><C-w>k
-  tnoremap <A-l> <C-\><C-N><C-w>l
-  inoremap <A-h> <C-\><C-N><C-w>h
-  inoremap <A-j> <C-\><C-N><C-w>j
-  inoremap <A-k> <C-\><C-N><C-w>k
-  inoremap <A-l> <C-\><C-N><C-w>l
-endif
+" ale settings
+let g:ale_virtualenv_dir_names = ['virtualenv', 'venv']
+nmap <unique> <leader>pe <Plug>PickerEdit
+nmap <unique> <leader>ps <Plug>PickerSplit
+nmap <unique> <leader>pt <Plug>PickerTabedit
+nmap <unique> <leader>pv <Plug>PickerVsplit
+nmap <unique> <leader>pb <Plug>PickerBuffer
+nmap <unique> <leader>p] <Plug>PickerTag
+nmap <unique> <leader>pw <Plug>PickerStag
+nmap <unique> <leader>po <Plug>PickerBufferTag
+nmap <unique> <leader>ph <Plug>PickerHelp<Paste>
