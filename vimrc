@@ -30,6 +30,7 @@ Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'mhinz/vim-signify'
 Plug 'pearofducks/ansible-vim'
 Plug 'rhysd/committia.vim'
@@ -55,14 +56,6 @@ colorscheme dracula
 if has("gui_running")
   set guioptions=M
   set guifont=Envy\ Code\ R\ 9
-endif
-
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
-
-if $COLORTERM == 'screen'
-  set t_Co=256
 endif
 
 set background=dark
@@ -182,6 +175,10 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
+" vim-signify settings
+let g:signify_vcs_list = [ 'git' ]
+let g:signify_update_on_focusgained = 1
+
 " indentLine settings
 let g:indentLine_char = '|'
 let g:indentLine_color_term = 238
@@ -197,3 +194,10 @@ nmap <unique> <leader>p] <Plug>PickerTag
 nmap <unique> <leader>pw <Plug>PickerStag
 nmap <unique> <leader>po <Plug>PickerBufferTag
 nmap <unique> <leader>ph <Plug>PickerHelp<Paste>
+
+" grepper settings
+nnoremap <leader>g :Grepper -tool git<cr>
+nnoremap <leader>G :Grepper -tool ag<cr>
+
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
