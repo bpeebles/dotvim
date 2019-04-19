@@ -37,6 +37,20 @@ Plug 'rhysd/committia.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+
+" ncm2 things
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-tern', {'do': 'npm install'}
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+Plug 'ncm2/ncm2-html-subscope'
+Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-rst-subscope'
+
+Plug 'raimon49/requirements.txt.vim'
 Plug 'srstevenson/vim-picker'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
@@ -50,6 +64,21 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
+" ncm2 related settings
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+"
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 " Color scheme settings
 colorscheme dracula
 
@@ -147,10 +176,13 @@ augroup ft_rest
   au Filetype rst,markdown,python nnoremap <buffer> <localleader>4 yypVr-:redraw<cr>
 augroup END
 
+" JSON things
 augroup JSON
   autocmd!
   autocmd FileType json nnoremap <buffer> <localleader>j :%!python -m json.tool<CR>:%s/\s\+$//<CR>
 augroup END
+
+let g:vim_json_syntax_conceal = 0
 
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
@@ -182,6 +214,7 @@ let g:signify_update_on_focusgained = 1
 " indentLine settings
 let g:indentLine_char = '|'
 let g:indentLine_color_term = 238
+let g:indentLine_faster = 1
 
 " ale settings
 let g:ale_virtualenv_dir_names = ['virtualenv', 'venv']
