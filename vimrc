@@ -3,6 +3,8 @@ if has('nvim')
   let g:python_host_prog = $HOME . '/.pyenv/versions/2.7.15-neovim/bin/python'
   let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
+  set updatetime=100
+
   " Neovim terminal configuration
   tnoremap <Esc><Esc> <C-\><C-n>
   tnoremap <A-h> <C-\><C-N><C-w>h
@@ -21,6 +23,7 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'amiorin/vim-textile'
 Plug 'bling/vim-airline'
 Plug 'bpeebles/vim-commitvention'
 Plug 'dracula/vim', {'as': 'dracula'}
