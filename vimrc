@@ -1,7 +1,11 @@
 if has('nvim')
   " Specific Pythons for Neovim to speed up start up
-  let g:python_host_prog = $HOME . '/.pyenv/versions/2.7.15-neovim/bin/python'
-  let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+  if filereadable($HOME . '/.pyenv/versions/neovim3/bin/python')
+    let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+  endif
+  if filereadable($HOME . '/.pyenv/versions/neovim3/bin/python')
+    let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+  endif
 
   set updatetime=100
 
