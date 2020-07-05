@@ -16,6 +16,7 @@ Then symlink ``~/.vimrc`` to ``~/.vim/vimrc`` (after moving/integrating any
 existing ``~/.vimrc`` you have to ``~/.vim/``.)::
 
    ln -s ~/.vim/vimrc ~/.vimrc
+   ln -s ~/.vim ~/.config/nvim
 
 Start ``vim`` and run ``:PlugInstall`` to download the bundles from the remote
 sources. Restart vim to be safe and enjoy the awesomeness.
