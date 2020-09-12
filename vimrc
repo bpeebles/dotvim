@@ -191,6 +191,14 @@ augroup END
 
 let g:vim_json_syntax_conceal = 0
 
+" PHP things
+let php_folding=2
+augroup PHP
+  autocmd!
+  autocmd FileType php set foldmethod=syntax
+augroup END
+
+
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
 
@@ -225,6 +233,9 @@ let g:indentLine_faster = 1
 
 " ale settings
 let g:ale_virtualenv_dir_names = ['virtualenv', 'venv']
+
+nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
 
 " vim-picker settings
 nmap <unique> <leader>pe <Plug>(PickerEdit)
