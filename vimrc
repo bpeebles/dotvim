@@ -83,9 +83,6 @@ set shortmess+=c
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-"
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 " Color scheme settings
 colorscheme dracula
 
@@ -151,10 +148,6 @@ nnoremap <localleader>z :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:ln
 nnoremap <localleader>Z :setlocal foldcolumn=0 foldexpr=<CR>
 " Make a new command Foldsearch that searches and folds
 command! -nargs=+ Foldsearch exe "normal /".<q-args>."\z"
-
-" Use Q for formatting the current paragraph (or selection)
-vmap Q gq
-nmap Q gqap
 
 " Enable tagbar toggle shortcut
 nmap <F8> :TagbarToggle<CR>
