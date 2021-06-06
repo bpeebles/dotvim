@@ -28,22 +28,18 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'amiorin/vim-textile'
-Plug 'bling/vim-airline'
 Plug 'bpeebles/vim-commitvention'
+Plug 'cespare/vim-toml'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'junegunn/gv.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-Plug 'mhinz/vim-signify'
-Plug 'pearofducks/ansible-vim'
-Plug 'rhysd/committia.vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
 
 " ncm2 things
 Plug 'ncm2/ncm2'
@@ -57,8 +53,15 @@ Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-markdown-subscope'
 Plug 'ncm2/ncm2-rst-subscope'
 
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'mhinz/vim-signify'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'rhysd/committia.vim'
+Plug 'sindrets/diffview.nvim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'srstevenson/vim-picker'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -66,8 +69,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'wting/rust.vim', {'for': 'rust'}
-Plug 'Yggdroot/indentLine'
+Plug 'ziglang/zig.vim'
 
 call plug#end()
 
@@ -114,7 +118,7 @@ set printdevice=pdf
 set printoptions=paper:letter,syntax:y,wrap:y
 
 " Don't try to save a swap to current dir until last resort
-set directory=~/tmp,/var/tmp,/tmp,.
+set directory=/tmp//,~/tmp//,/var/tmp//,.
 
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
@@ -158,7 +162,8 @@ augroup Python
   autocmd!
   " I normally keep tabstop and softtabstop identical, but since Python
   " sees actual tab characters as 8 always, show them as that.
-  autocmd FileType python setlocal foldmethod=indent foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
+  autocmd FileType python setlocal foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
+  autocmd FileType python let b:ale_linters=['flake8', 'mypy', 'pylint', 'pyright', 'bandit']
 augroup END
 
 augroup ft_rest
@@ -204,16 +209,23 @@ nnoremap <leader>y :call yapf#YAPF()<cr>
 " EditorConfig
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" vim-airline configuration
-" Turn on the buffer/tab list
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':~:.'
-" Disable seperator pieces
-let g:airline_symbols = {}
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+" lightline configuration
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex', 'treesitter' ] ]
+      \ },
+      \ 'component': {
+      \   'charvaluehex': '0x%B'
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'treesitter': 'nvim_treesitter#statusline'
+      \ },
+      \ }
+
+set noshowmode
 
 " vim-signify settings
 let g:signify_vcs_list = [ 'git' ]
@@ -226,6 +238,8 @@ let g:indentLine_faster = 1
 
 " ale settings
 let g:ale_virtualenv_dir_names = ['virtualenv', 'venv']
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
 
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
@@ -247,3 +261,29 @@ nnoremap <leader>G :Grepper -tool ag<cr>
 
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
+
+" tree-sitter config
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  --ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  --ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    --disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = false
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
