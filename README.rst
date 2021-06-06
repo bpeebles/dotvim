@@ -1,7 +1,7 @@
 Simple vimrc set up using vim-plug
 ==================================
 
-I currently use neovim_ but most of ``vimrc`` will work with Vim 8+.
+I currently use neovim_ but some of my ``vimrc`` will work with Vim 8+.
 
 Getting started
 ---------------
@@ -43,21 +43,24 @@ creators.
 Notable plugins used
 --------------------
 
+- nvim-treesitter_ to try fancier/faster syntax highlighting and code selection
 - vim-picker_ is a nice fuzzy picker that uses fzy_ and I've defined some keys to activate it.
 
 - ale_, to check Python and other file types.
 
 - fugitive.vim_ is a pretty amazing Git wrapper that seems to speed up my git workflow.
 
-- vim-airline_ I've switched from using the new powerline_ to vim-airline since it's pure Vimscript and I've stopped using powerline for my bash prompt.
+- lightline.vim_ I've switched from vim-airline_, after using power_line, since airline kept getting more busy and I figured I'd try something else.
 
 .. _neovim: https://github.com/neovim/neovim
 .. _vim-plug: https://github.com/junegunn/vim-plug
+.. _nvim-treesitter: https://github.com/nvim-treesitter/nvim-treesitter
 .. _vim-picker: https://github.com/srstevenson/vim-picker
 .. _fzy: https://github.com/jhawthorn/fzy
 .. _ale: https://github.com/w0rp/ale
 .. _fugitive.vim: https://github.com/tpope/vim-fugitive
 .. _powerline: https://github.com/Lokaltog/powerline
 .. _vim-airline: https://github.com/bling/vim-airline
+.. _lightline.vim: https://github.com/itchyny/lightline.vim
 .. _Jedi: https://github.com/davidhalter/jedi
 .. _unlicense: http://unlicense.org
