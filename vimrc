@@ -28,8 +28,10 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'amiorin/vim-textile'
+Plug 'ap/vim-buftabline'
 Plug 'bpeebles/vim-commitvention'
 Plug 'cespare/vim-toml'
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
@@ -55,7 +57,10 @@ Plug 'ncm2/ncm2-rst-subscope'
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'mhinz/vim-signify'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'rhysd/committia.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'raimon49/requirements.txt.vim'
@@ -145,6 +150,11 @@ nnoremap <leader><space> :noh<cr>
 " select the lines from the previous paste using the [] marks
 nmap <leader>p `[v`]
 
+" buffer navication
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>p :bp<cr>
+nnoremap <leader>d :bd<cr>
+
 " Convert a search into folds
 " From http://vim.wikia.com/wiki/Folding_with_Regular_Expression
 nnoremap <localleader>z :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>
@@ -200,6 +210,10 @@ augroup END
 " Write a file using sudo in case you opened it as not root
 command Sudo :%!sudo tee > /dev/null %
 
+" buftabline settings
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+
 " undotree options
 nnoremap <F5> :UndotreeToggle<CR>
 
@@ -214,16 +228,23 @@ let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'charvaluehex', 'treesitter' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'charvaluehex', 'treesitter'] ]
       \ },
       \ 'component': {
       \   'charvaluehex': '0x%B'
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'gitbranch': 'FugitiveHead',
-      \   'treesitter': 'nvim_treesitter#statusline'
+      \   'treesitter': 'nvim_treesitter#statusline',
       \ },
       \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
 
 set noshowmode
 
@@ -257,7 +278,7 @@ nmap <unique> <leader>ph <Plug>(PickerHelp)
 
 " grepper settings
 nnoremap <leader>g :Grepper -tool git<cr>
-nnoremap <leader>G :Grepper -tool ag<cr>
+nnoremap <leader>G :Grepper -tool rg<cr>
 
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
@@ -287,3 +308,25 @@ require'nvim-treesitter.configs'.setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope git_status<cr>
+
+lua <<EOF
+require('telescope').setup {
+  defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      anchor = "SE",
+      height = 0.7,
+      width = 0.8,
+      preview_cutoff = 5,
+    },
+  },
+}
+require('telescope').load_extension('fzy_native')
+EOF
