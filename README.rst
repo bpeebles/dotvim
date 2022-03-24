@@ -1,7 +1,7 @@
 Simple vimrc set up using vim-plug
 ==================================
 
-I currently use neovim_ but some of my ``vimrc`` will work with Vim 8+.
+I currently use neovim_ but some of my ``vimrc`` will work with Vim 8+ (untested).
 
 Getting started
 ---------------
@@ -44,6 +44,7 @@ Notable plugins used
 --------------------
 
 - nvim-treesitter_ to try fancier/faster syntax highlighting and code selection
+
 - vim-picker_ is a nice fuzzy picker that uses fzy_ and I've defined some keys to activate it.
 
 - ale_, to check Python and other file types.
