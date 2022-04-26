@@ -73,7 +73,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'ziglang/zig.vim'
