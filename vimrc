@@ -310,8 +310,12 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 " Find files using Telescope command-line sugar.
+nnoremap <leader>fx <cmd>Telescope builtin<cr>
+nnoremap <leader>fe <cmd>Telescope find_files<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fw <cmd>Telescope grep_string<cr>
+nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope git_status<cr>
