@@ -35,9 +35,11 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'ggandor/leap.nvim'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'junegunn/gv.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
@@ -55,12 +57,14 @@ Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-markdown-subscope'
 Plug 'ncm2/ncm2-rst-subscope'
 
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'mhinz/vim-signify'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'pwntester/octo.nvim'
 Plug 'rhysd/committia.vim'
 Plug 'sindrets/diffview.nvim'
 Plug 'raimon49/requirements.txt.vim'
@@ -76,7 +80,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'dense-analysis/ale'
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'wting/rust.vim', {'for': 'rust'}
-Plug 'ziglang/zig.vim'
+Plug 'yuezk/vim-js'
 
 call plug#end()
 
@@ -118,9 +122,7 @@ set number
 " Keyboard timeout quicker to show mode line changes
 set ttimeoutlen=100
 
-" Printer options
-set printdevice=pdf
-set printoptions=paper:letter,syntax:y,wrap:y
+set mouse=
 
 " Don't try to save a swap to current dir until last resort
 set directory=/tmp//,~/tmp//,/var/tmp//,.
@@ -333,4 +335,18 @@ require('telescope').setup {
   },
 }
 require('telescope').load_extension('fzy_native')
+EOF
+
+" Octo
+lua <<EOF
+require('octo').setup({
+  file_panel = {
+    use_icons = false
+  }
+})
+EOF
+
+" Leap.nvim
+lua <<EOF
+require('leap').set_default_keymaps()
 EOF
