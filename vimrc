@@ -315,6 +315,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
@@ -356,4 +357,11 @@ EOF
 " Leap.nvim
 lua <<EOF
 require('leap').set_default_keymaps()
+EOF
+
+"" neogit
+lua <<EOF
+local neogit = require('neogit')
+
+neogit.setup {}
 EOF
