@@ -10,17 +10,13 @@ if has('nvim')
   set updatetime=100
 endif
 
-" vim-plug
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'amiorin/vim-textile'
 Plug 'ap/vim-buftabline'
 Plug 'bpeebles/vim-commitvention'
 Plug 'cespare/vim-toml'
-Plug 'dart-lang/dart-vim-plugin'
+Plug 'CKolkey/neogit'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json', {'for': 'json'}
@@ -29,7 +25,6 @@ Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 Plug 'junegunn/gv.vim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
@@ -67,7 +62,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'dense-analysis/ale'
-Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'wting/rust.vim', {'for': 'rust'}
 Plug 'yuezk/vim-js'
 
