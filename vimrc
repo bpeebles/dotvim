@@ -282,8 +282,12 @@ nmap <unique> <leader>po <Plug>(PickerBufferTag)
 nmap <unique> <leader>ph <Plug>(PickerHelp)
 
 " grepper settings
-nnoremap <leader>g :Grepper -tool git<cr>
-nnoremap <leader>G :Grepper -tool rg<cr>
+nnoremap <leader>gg :Grepper -tool git<cr>
+nnoremap <leader>gr :Grepper -tool rg<cr>
+
+" vim-fugitive mappings
+nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>gs :Git<cr>
 
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
