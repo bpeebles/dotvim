@@ -158,7 +158,8 @@ augroup Python
   " I normally keep tabstop and softtabstop identical, but since Python
   " sees actual tab characters as 8 always, show them as that.
   autocmd FileType python setlocal foldnestmax=2 ts=8 expandtab sw=4 softtabstop=4
-  autocmd FileType python let b:ale_linters=['flake8', 'mypy', 'pylint', 'pyright', 'bandit']
+  " autocmd FileType python let b:ale_linters=['ruff', 'flake8', 'mypy', 'pylint', 'pyright', 'bandit']
+  autocmd FileType python let b:ale_linters=['ruff', 'mypy' ]
 augroup END
 
 augroup ft_rest
@@ -246,6 +247,25 @@ let g:indentLine_faster = 1
 let g:ale_virtualenv_dir_names = ['virtualenv', 'venv']
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
+let g:ale_pattern_options = {
+\   'work/snakex/.*\.js$': {
+\       'ale_linters': ['eslint'],
+\       'ale_fixers': ['eslint', 'prettier'],
+\   },
+\   'work/snakex/.*\.css$': {
+\       'ale_fixers': ['prettier'],
+\   },
+\   'work/snakex/.*\.scss$': {
+\       'ale_fixers': ['prettier'],
+\   },
+\   'work/excompanion/.*\.js$': {
+\       'ale_linters': ['eslint'],
+\       'ale_fixers': ['eslint', 'prettier'],
+\   },
+\   'work/excompanion/.*\.css$': {
+\       'ale_fixers': ['prettier'],
+\   },
+\}
 
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
